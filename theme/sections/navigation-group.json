@@ -1,0 +1,14 @@
+{
+  "name": "t:sections.navigation.name",
+  "type": "header",
+  "sections": {
+    "navigation": {
+      "type": "navigation",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "navigation"
+  ]
+}

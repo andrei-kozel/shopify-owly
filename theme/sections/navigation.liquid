@@ -1,0 +1,29 @@
+<nav class="border-b">
+  <div class="container flex items-center justify-between w-full m-auto py-4 bg-red-100">
+    <div class="logo">Logo</div>
+    <div class="search">
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="cart">cart 12</div>
+  </div>
+  <ul class="flex flex-row gap-8 w-full justify-start items-center pb-4 container m-auto bg-green-100">
+    {% for link in linklists['main-menu'].links -%}
+      <li>
+        <a href="{{ link.url }}">{{ link.title | link_to: link.url }}</a>
+      </li>
+    {%- endfor %}
+  </ul>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}
