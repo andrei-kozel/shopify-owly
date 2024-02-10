@@ -3,7 +3,7 @@
     <div class="logo">
       <a href="{{ shop.url }}">
         <img
-          src="{{ settings.logo | image_url }}"
+          src="{{ section.settings.logo | image_url }}"
           alt=""
           width="60"
           height="60"
@@ -72,28 +72,14 @@
   </ul>
 </nav>
 
-<script>
-  console.log("section")
-  console.log({{ settings | json }});
-</script>
-
 {% schema %}
   {
-    "name": "Header",
+    "name": "Navigation",
     "settings": [
       {
-        "type": "text",
+        "type": "image_picker",
         "id": "logo",
         "label": "Logo"
-      }
-    ],
-    "presets": [
-      {
-        "category": "Header",
-        "name": "Header",
-        "settings": {
-          "logo": "https://via.placeholder.com/60"
-        }
       }
     ]
   }

@@ -1,14 +1,15 @@
 {
-  "name": "t:sections.navigation.name",
+  "name": "Test",
   "type": "header",
   "sections": {
     "navigation": {
       "type": "navigation",
-      "settings": {
-      }
+      "settings": {}
+    },
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {}
     }
   },
-  "order": [
-    "navigation"
-  ]
+  "order": ["announcement-bar", "navigation"]
 }
