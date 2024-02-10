@@ -1,29 +1,86 @@
 <nav class="border-b">
-  <div class="container flex items-center justify-between w-full m-auto py-4 bg-red-100">
-    <div class="logo">Logo</div>
-    <div class="search">
-      <input type="text" placeholder="Search">
+  <div class="container gap-12 flex items-center justify-between w-full m-auto py-2 bg-red-100">
+    <div class="logo">
+      <a href="{{ shop.url }}">
+        <img
+          src="{{ settings.logo | image_url }}"
+          alt=""
+          width="60"
+          height="60"
+          loading="lazy">
+      </a>
+    </div>
+    <div class="search w-full">
+      <form class="w-full">
+        <input
+          class="w-full"
+          type="text"
+          placeholder="Search">
+      </form>
     </div>
     <div class="cart">cart 12</div>
   </div>
-  <ul class="flex flex-row gap-8 w-full justify-start items-center pb-4 container m-auto bg-green-100">
-    {% for link in linklists['main-menu'].links -%}
+  {% comment %} Main navigation {% endcomment %}
+  <ul class="flex w-full gap-5 container m-auto bg-red-200 justify-center">
+    {%- for link in linklists.main-menu.links -%}
       <li>
-        <a href="{{ link.url }}">{{ link.title | link_to: link.url }}</a>
+        <a
+          href="{{ link.url }}"
+          {% if link.active %}
+          aria-current="page"
+          {% endif %}>
+          {{ link.title }}
+        </a>
+
+        {%- if link.links != blank -%}
+          {% comment %} Second navigation layer {% endcomment %}
+          <ul class="bg-green-300">
+            {%- for child_link in link.links -%}
+              <li>
+                <a
+                  href="{{ child_link.url }}"
+                  {% if child_link.active %}
+                  aria-current="page"
+                  {% endif %}>
+                  {{ child_link.title }}
+                </a>
+
+                {%- if child_link.links != blank -%}
+                  {% comment %} Third navigation layer {% endcomment %}
+                  <ul class="bg-orange-300">
+                    {%- for grandchild_link in child_link.links -%}
+                      <li>
+                        <a
+                          href="{{ grandchild_link.url }}"
+                          {% if grandchild_link.active %}
+                          aria-current="page"
+                          {% endif %}>
+                          {{ grandchild_link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
       </li>
-    {%- endfor %}
+    {%- endfor -%}
   </ul>
 </nav>
 
 {% schema %}
-{
-  "name": "Header",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    }
-  ]
-}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ]
+  }
 {% endschema %}
