@@ -9,7 +9,11 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {}
+    },
+    "search-bar": {
+      "type": "search-bar",
+      "settings": {}
     }
   },
-  "order": ["announcement-bar", "navigation"]
+  "order": ["announcement-bar", "search-bar", "navigation"]
 }

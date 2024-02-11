@@ -25,6 +25,12 @@
         "center": "Center",
         "right": "Right"
       }
+    },
+    "search_bar": {
+      "settings": {
+        "name": "Search bar",
+        "description": "The search bar is a great way to help your customers find what they are looking for."
+      }
     }
   }
 }

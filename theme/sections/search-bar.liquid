@@ -1,0 +1,86 @@
+<div class="container m-auto flex gap-6 py-4">
+  <div class="flex items-center">
+    <img
+      src="{{ settings.logo | image_url }}"
+      alt="logo"
+      class="w-6 h-6">
+  </div>
+  <div class="w-full overflow-hidden flex items-center" style="border-radius: {{ section.settings.rounded }}px;">
+    <form
+      class="search w-full flex h-12 items-center"
+      action="/search"
+      style="
+        height: {{ section.settings.search_bar_height }}px;
+        background-color: {{ section.settings.search_background_color }};">
+      <div class="mx-3 py-3" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="Outline"
+          fill="{{ section.settings.search_icons_color }}"
+          viewBox="0 0 24 24"
+          width="w-full"
+          height="h-full"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z" /></svg>
+      </div>
+      <input
+        type="text"
+        class="w-full h-full"
+        style="background-color: {{ section.settings.search_background_color }};"
+        placeholder="Search"
+        value="{{ search.terms | escape }}" />
+      <div class="mx-3 py-3 cursor-pointer" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="Outline"
+          class="hover:fill-black"
+          fill="{{ section.settings.search_icons_color }}"
+          viewBox="0 0 24 24"
+          width="w-full"
+          height="h-full"><path d="M23.12,9.91,19.25,6a1,1,0,0,0-1.42,0h0a1,1,0,0,0,0,1.41L21.39,11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H21.45l-3.62,3.61a1,1,0,0,0,0,1.42h0a1,1,0,0,0,1.42,0l3.87-3.88A3,3,0,0,0,23.12,9.91Z" /></svg>
+      </div>
+    </form>
+  </div>
+  <div>
+    icons
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.search_bar.settings.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:sections.search_bar.settings.description"
+      },
+      {
+        "type": "range",
+        "id": "rounded",
+        "label": "t:sections.search_bar.settings.rounded",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "default": 30
+      },
+      {
+        "type": "color",
+        "id": "search_background_color",
+        "default": "#eeeeee",
+        "label": "t:sections.search_bar.settings.search_background_color"
+      },
+      {
+        "type": "color",
+        "id": "search_icons_color",
+        "default": "#cccccc",
+        "label": "t:sections.search_bar.settings.search_icons_color"
+      }, {
+        "type": "range",
+        "id": "search_bar_height",
+        "label": "t:sections.search_bar.settings.search_bar_height",
+        "min": 20,
+        "max": 100,
+        "step": 1,
+        "default": 40
+      }
+    ]
+  }
+{% endschema %}
