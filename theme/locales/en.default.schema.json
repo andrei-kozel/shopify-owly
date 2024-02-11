@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "announcement_bar": {
+      "general_info": "The announcement bar is a great way to communicate important information to your customers. You can use it to promote sales, discounts, and new products.",
+      "text": "Announcement text",
+      "text_placeholder": "Enter your announcement here",
+      "link": "Announcement link text",
+      "link_placeholder": "Learn more",
+      "url": "Announcement link",
+      "name": "Announcement bar",
+      "show_announcement_bar": "Show announcement",
+      "show_announcement_bar_info": "If you want to show the announcement bar, enable this option.",
+      "home_page_only": "Home page only",
+      "home_page_only_info": "If you want to show the announcement bar only on the home page, enable this option.",
+      "use_as_a_link": "Use bar as a link",
+      "use_as_a_link_info": "If you want to use the announcement bar as a link, enable this option.",
+      "height": "Height of the announcement bar",
+      "colors_info": "Colors that you set here will be used for the announcement bar.",
+      "text_color": "Text color",
+      "background_color": "Background color",
+      "link_color": "Link color",
+      "text_position": {
+        "label": "Text alignment",
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      }
+    }
+  }
+}
