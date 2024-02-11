@@ -1,67 +1,114 @@
 {%- if section.settings.show_announcement -%}
-  {%- if section.settings.home_page_only == false or template.name == 'index' -%}
+  {% if section.settings.home_page_only and template.name != 'index' %}
+    {% assign show_announcement = false %}
+  {% else %}
+    {% assign show_announcement = true %}
+  {% endif %}
+{% else %}
+  {% assign show_announcement = false %}
+{% endif %}
 
-    {%- if section.settings.link == blank -%}
-      <div>
-    {%- else -%}
-      <a href="{{ section.settings.link }}" >
-    {%- endif -%}
-
-      <p>{{ section.settings.text | escape }}</p>
-
-    {%- if section.settings.link == blank -%}
+{% if show_announcement %}
+  <div class="announcement-bar" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; height: {{ section.settings.height }}px; line-height: {{ section.settings.height }}px; text-align: {{ section.settings.text_position }};">
+    <div class="announcement-bar__inner">
+      <div class="announcement-bar__text">
+        {{ section.settings.text }}
       </div>
-    {%- else -%}
-      </a>
-    {%- endif -%}
-
-  {%- endif -%}
-{%- endif -%}
+      {% if section.settings.link %}
+        <a
+          href="{{ section.settings.link }}"
+          class="announcement-bar__link"
+          style="color: {{ section.settings.link_color }};">
+          {{ section.settings.link_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  <style>
+    .announcement-bar {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      text-align: center;
+    }
+    .announcement-bar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .announcement-bar__text {
+      font-size: 16px;
+    }
+    .announcement-bar__link {
+      text-decoration: underline;
+    }
+  </style>
+  {% if section.settings.use_bar_as_link %}
+    <style>
+      .announcement-bar {
+        cursor: pointer;
+      }
+      .announcement-bar:hover {
+        background-color: {{ section.settings.link_color }};
+        color: {{ section.settings.background_color }};
+      }
+      .announcement-bar:hover .announcement-bar__link {
+        color: {{ section.settings.background_color }};
+      }
+    </style>
+    <script>
+      document.querySelector('.announcement-bar').addEventListener('click', function() {
+        window.location.href = '{{ section.settings.link }}';
+      });
+    </script>
+  {% endif %}
+{% endif %}
 
 {% schema %}
-{
-  "name": "Announcement bar",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_announcement",
-      "label": "Show announcement",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "home_page_only",
-      "label": "Home page only",
-      "default": true
-    },
-    {
-      "label": "Height of the announcement bar",
-      "type": "range",
-      "id": "height",
-      "min": 20,
-      "max": 100,
-      "step": 1,
-      "default": 40
-  
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "link_color",
-      "label": "Link color",
-      "default": "#ffffff"},
+  {
+    "name": "Announcement bar",
+    "settings": [
       {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "home_page_only",
+        "label": "Home page only",
+        "default": true
+      },
+      {
+        "label": "Height of the announcement bar",
+        "type": "range",
+        "id": "height",
+        "min": 20,
+        "max": 100,
+        "step": 1,
+        "default": 40
+
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#000000"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "link_color",
+        "label": "Link color",
+        "default": "#ffffff"
+      }, {
         "label": "Text position",
         "type": "select",
         "id": "text_position",
@@ -69,41 +116,35 @@
           {
             "value": "left",
             "label": "Left"
-          },
-          {
+          }, {
             "value": "center",
             "label": "Center"
-          },
-          {
+          }, {
             "value": "right",
             "label": "Right"
           }
         ],
         "default": "center"
-      },
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Announcement text",
-      "default": "Announce something here"
-    },
-    {
-      "type": "text",
-      "id": "link_text",
-      "label": "Announcement link text",
-      "default": "Learn more"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Announcement link"
-    },
-    {
-      "label": "Use bar as a link",
-      "type": "checkbox",
-      "id": "use_bar_as_link",
-      "default": false
-    }
-  ]
-}
+      }, {
+        "type": "text",
+        "id": "text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      }, {
+        "type": "text",
+        "id": "link_text",
+        "label": "Announcement link text",
+        "default": "Learn more"
+      }, {
+        "type": "url",
+        "id": "link",
+        "label": "Announcement link"
+      }, {
+        "label": "Use bar as a link",
+        "type": "checkbox",
+        "id": "use_bar_as_link",
+        "default": false
+      }
+    ]
+  }
 {% endschema %}

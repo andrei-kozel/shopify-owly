@@ -22,7 +22,7 @@
   </div>
   {% comment %} Main navigation {% endcomment %}
   <ul class="flex w-full gap-5 container m-auto bg-red-200 justify-center">
-    {%- for link in linklists.main-menu.links -%}
+    {%- for link in linklists['main-menu'].links -%}
       <li>
         <a
           href="{{ link.url }}"
@@ -61,12 +61,10 @@
                     {%- endfor -%}
                   </ul>
                 {%- endif -%}
-
               </li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
-
       </li>
     {%- endfor -%}
   </ul>
