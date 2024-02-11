@@ -29,7 +29,15 @@
     "search_bar": {
       "settings": {
         "name": "Search bar",
-        "description": "The search bar is a great way to help your customers find what they are looking for."
+        "description": "The search bar is a great way to help your customers find what they are looking for.",
+        "rounded": "Rounded corners",
+        "rounded_info": "If you want to use rounded corners for the search bar, enable this option.",
+        "search_background_color": "Search background color",
+        "search_icons_color": "Search icons color",
+        "search_bar_height": "Search bar height",
+        "search_bar_height_info": "Set the height of the search bar.",
+        "logo_height": "Logo height",
+        "logo_height_info": "Set the height of the logo."
       }
     }
   }

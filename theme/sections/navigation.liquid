@@ -1,26 +1,4 @@
 <nav class="border-b">
-  <div class="container gap-12 flex items-center justify-between w-full m-auto py-2 bg-red-100">
-    <div class="logo">
-      <a href="{{ shop.url }}">
-        <img
-          src="{{ section.settings.logo | image_url }}"
-          alt=""
-          width="60"
-          height="60"
-          loading="lazy">
-      </a>
-    </div>
-    <div class="search w-full">
-      <form class="w-full">
-        <input
-          class="w-full h-12 border-r-12"
-          type="text"
-          maxlength="255"
-          placeholder="Search">
-      </form>
-    </div>
-    <div class="cart">cart 12</div>
-  </div>
   {% comment %} Main navigation {% endcomment %}
   <ul class="flex w-full gap-5 container m-auto bg-red-200 justify-center">
     {%- for link in linklists['main-menu'].links -%}
@@ -70,16 +48,3 @@
     {%- endfor -%}
   </ul>
 </nav>
-
-{% schema %}
-  {
-    "name": "Navigation",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo"
-      }
-    ]
-  }
-{% endschema %}

@@ -1,18 +1,20 @@
-<div class="container m-auto flex gap-6 py-4">
-  <div class="flex items-center">
-    <img
-      src="{{ settings.logo | image_url }}"
-      alt="logo"
-      class="w-6 h-6">
+<div class="container m-auto flex gap-6 py-4" style="height: {{ section.settings.search_bar_height }}px;">
+  <div class="flex items-center h-full">
+    <a href="{{ shop.url }}">
+      <img
+        src="{{ settings.logo | image_url }}"
+        alt="logo"
+        style="width: {{ section.settings.logo_height }}px"
+        class="w-full">
+    </a>
   </div>
   <div class="w-full overflow-hidden flex items-center" style="border-radius: {{ section.settings.rounded }}px;">
     <form
-      class="search w-full flex h-12 items-center"
+      class="search w-full flex items-center h-full"
       action="/search"
-      style="
-        height: {{ section.settings.search_bar_height }}px;
+      style="  
         background-color: {{ section.settings.search_background_color }};">
-      <div class="mx-3 py-3" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
+      <div class="mx-3 py-6" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="Outline"
@@ -27,7 +29,7 @@
         style="background-color: {{ section.settings.search_background_color }};"
         placeholder="Search"
         value="{{ search.terms | escape }}" />
-      <div class="mx-3 py-3 cursor-pointer" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
+      <div class="mx-3 py-6 cursor-pointer" style="background-color: {{ section.settings.search_background_color }}; height: {{ section.settings.search_bar_height }}px;">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="Outline"
@@ -39,11 +41,38 @@
       </div>
     </form>
   </div>
-  <div>
-    icons
+  <div class="flex gap-6">
+    <div class="my-3">
+      <a href="{{ routes.cart_url }}" title="Cart">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="w-full"
+          height=" w-full">
+          <g id="_01_align_center" data-name="01 align center"><path d="M24,3H4.242L4.2,2.649A3,3,0,0,0,1.222,0H0V2H1.222a1,1,0,0,1,.993.883L3.8,16.351A3,3,0,0,0,6.778,19H20V17H6.778a1,1,0,0,1-.993-.884L5.654,15H21.836ZM20.164,13H5.419L4.478,5H21.607Z" /><circle
+              cx="7"
+              cy="22"
+              r="2" /><circle
+              cx="17"
+              cy="22"
+              r="2" /></g>
+        </svg>
+      </a>
+    </div>
+    <div class="my-3">
+      <a href="{{ routes.account_url }}">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="w-full"
+          height="w-full">
+          <g id="_01_align_center" data-name="01 align center"><path d="M21,24H19V18.957A2.96,2.96,0,0,0,16.043,16H7.957A2.96,2.96,0,0,0,5,18.957V24H3V18.957A4.963,4.963,0,0,1,7.957,14h8.086A4.963,4.963,0,0,1,21,18.957Z" /><path d="M12,12a6,6,0,1,1,6-6A6.006,6.006,0,0,1,12,12ZM12,2a4,4,0,1,0,4,4A4,4,0,0,0,12,2Z" /></g>
+        </svg>
+      </a>
+    </div>
+
   </div>
 </div>
-
 {% schema %}
   {
     "name": "t:sections.search_bar.settings.name",
@@ -59,7 +88,9 @@
         "min": 0,
         "max": 50,
         "step": 1,
-        "default": 30
+        "default": 30,
+        "info": "t:sections.search_bar.settings.rounded_info",
+        "unit": "px"
       },
       {
         "type": "color",
@@ -76,10 +107,22 @@
         "type": "range",
         "id": "search_bar_height",
         "label": "t:sections.search_bar.settings.search_bar_height",
+        "min": 40,
+        "max": 90,
+        "step": 1,
+        "default": 70,
+        "info": "t:sections.search_bar.settings.search_bar_height_info",
+        "unit": "px"
+      }, {
+        "type": "range",
+        "id": "logo_height",
+        "label": "t:sections.search_bar.settings.logo_height",
         "min": 20,
         "max": 100,
         "step": 1,
-        "default": 40
+        "default": 60,
+        "info": "t:sections.search_bar.settings.logo_height_info",
+        "unit": "px"
       }
     ]
   }
