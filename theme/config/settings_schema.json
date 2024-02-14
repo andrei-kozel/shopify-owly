@@ -8,7 +8,18 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
-    "settings": [],
-    "name": "another_item"
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ],
+    "name": "Logo"
   }
 ]
